@@ -61,21 +61,58 @@ namespace List
                 i++;
             }
         }
+        static void ändraKontakt(int index)
+        {
+            index -= 1;
+            Console.WriteLine("Vad vill du ändra?");
+            Console.WriteLine("1: Namn");
+            Console.WriteLine("2: Telefonnummer");
+            Console.WriteLine("3: Födelseår");
+
+            int change = int.Parse(Console.ReadLine());
+
+            
+
+            switch (change)
+            {
+                case 1:
+                    Console.WriteLine("Vad vill du sätta för namn?");
+                    kontakter[index].setNamn(Console.ReadLine());
+                    break;
+                case 2:
+                    Console.WriteLine("Vad vill du sätta för telefonnummer?");
+                    kontakter[index].setNummer(Console.ReadLine());
+                    break;
+                case 3:
+                    Console.WriteLine("Vad vill du sätta för födelseår?");
+                    kontakter[index].setFödelseÅr(int.Parse(Console.ReadLine()));
+                    break;
+                default:
+                    break;
+            }
+
+            showData();
+
+        }
 
         static void showData()
         {
             Console.Clear();
             for (int j = 0; j < kontakter.Count; j++)
             {
+                Console.WriteLine($"Kontakt nr {j+1}");
+                
                 kontakter[j].showData();
             }
 
             Console.WriteLine("Tryck 1 om du vill ändra någon kontakt");
 
-            /*if (Console.ReadLine )
+            if (Console.ReadLine() == "1" )
             {
-
-            }*/
+                Console.WriteLine("Vilken?");
+                
+                ändraKontakt(int.Parse(Console.ReadLine()));
+            }
 
         }
     }
