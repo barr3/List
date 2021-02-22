@@ -36,14 +36,24 @@ namespace List
             Console.WriteLine("\nVänligen ange " + kontakter[i].getNamn() + "s födelseår.");
             kontakter[i].setFödelseÅr(int.Parse(Console.ReadLine()));
 
-            Console.WriteLine("Tryck 1 om du vill lägga till en till kontakt");
-            if (Console.ReadLine() == "1")
+            while (true)
             {
-                return true;
-            }
-            else
-            {
-                return false;
+                Console.WriteLine("While loop");
+                Console.WriteLine("Vill du lägga till ytterligare en kontakt (j/n)");
+                string input = Console.ReadLine().ToLower();
+                if (input == "j")
+                {
+                    return true;
+                }
+                else if(input == "n")
+                {
+                    return false;
+                }
+                else
+                {
+                    Console.WriteLine("Vänligen ange ett av alternativen\n");
+                }
+
             }
 
         }
@@ -100,18 +110,53 @@ namespace List
             Console.Clear();
             for (int j = 0; j < kontakter.Count; j++)
             {
-                Console.WriteLine($"Kontakt nr {j+1}");
-                
+                Console.WriteLine($"Kontakt nr {j + 1}");
+
                 kontakter[j].showData();
             }
 
-            Console.WriteLine("Tryck 1 om du vill ändra någon kontakt");
+            Console.WriteLine("Vill du ändra någon kontakt eller ? j/n");
+            string input = Console.ReadLine().ToLower();
 
-            if (Console.ReadLine() == "1" )
+            if (input == "j")
             {
-                Console.WriteLine("Vilken?");
-                
-                ändraKontakt(int.Parse(Console.ReadLine()));
+
+                int kontaktNr;
+
+                while (true)
+                {
+                    try
+                    {
+                        Console.WriteLine("Vilken kontakt vill du ändra?");
+                        kontaktNr = int.Parse(Console.ReadLine());
+
+                        if (kontaktNr <= kontakter.Count)
+                        {
+                            break;
+                        }
+
+
+                        
+                    }
+                    catch
+                    {
+                        Console.WriteLine("Vänligen välj en kontakt som finns");
+                    }
+
+                }
+
+                Console.WriteLine(kontaktNr);
+
+                ändraKontakt(kontaktNr);
+            }
+
+            else if (input == "n")
+            {
+
+            }
+            else
+            {
+                Console.WriteLine("Vänligen skriv j/n");
             }
 
         }
